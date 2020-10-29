@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="plc_upload_tree">
+            <field name="name">Plc Upload</field>
+            <field name="model">plc.upload</field>
+            <field name="arch" type="xml">
+                <tree string="Plc Upload">
+                    <field name="create_date"/>
+                    <field name="swdid_no"/>
+                    <field name="name"/>
+                    <field name="city"/>
+                    <field name="installation_date"/>
+                    <field name="ew_id"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model='ir.ui.view' id='plc_upload_form'>
+            <field name="name">Plc Upload</field>
+            <field name="model">plc.upload</field>
+            <field name="arch" type="xml">
+                <form string="Plc Upload">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Customer Name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="street_address"/>
+                                <field name="city"/>
+                                <field name="state"/>
+                                <field name="zipcode"/>
+                                <field name="phone_number" widget="phone" placeholder="(717)777-7777"/>
+                                <field name="contact_name"/>
+                                <field name="mobile_number" placeholder="777-777-7777"/>
+                                <field name="test"/>
+                            </group>
+                            <group>
+                                <field name="installation_date"/>
+                                <field name="dep_region"/>
+                                <field name="swdid_no"/>
+                                <field name="ew_id"/>
+                                <field name="time_zone"/>
+                                <field name="total_operating_hours"/>
+                                <field name="total_gallons_used"/>
+                                <field name="status"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="UV Data">
+                                <group>
+                                    <field name="uv_line_ids" nolabel="1">
+                                        <tree string="PCL Remote data lines" editable="top" default_order="date desc">
+                                            <field name="ew_id" string="EW ID"/>
+                                            <field name="date" string="Date"/>
+                                            <field name="dose" string="Dose" modifiers="{}"/>
+                                            <field name="p1" string="Probe mW 1" modifiers="{}"/>
+                                            <field name="p2" string="Probe mW 2" modifiers="{}"/>
+                                            <field name="lhr" string="Lamp Hours Remaining" modifiers="{}"/>
+                                            <field name="ldr" string="Lamp Days Remaining" modifiers="{}"/>
+                                            <field name="temp" string="Reactor Temp" modifiers="{}"/>
+                                            <field name="btemp" string="Box Temp" modifiers="{}"/>
+                                            <field name="gpm" string="GPM" modifiers="{}"/>
+                                            <field name="gpd" string="GPD" modifiers="{}"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Filter Data">
+                                <group>
+                                    <field name="filter_line_ids" nolabel="1">
+                                        <tree editable="top" string="PCL Remote data lines" default_order="date desc">
+                                            <field name="date" string="Date"/>
+                                            <field name="psi" string="PSI"/>
+                                            <field name="dp_screen" string="DPScreen"/>
+                                            <field name="dp1" string="DP Filter 1"/>
+                                            <field name="dp2" string="DP Filter 2"/>
+                                            <field name="fdr1" string="Filter 1 Days Remaining"/>
+                                            <field name="fdr2" string="Filter 2 Days Remaining"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="CCP">
+                                <group>
+                                    <field name="ccp_line_ids" nolabel="1">
+                                        <tree editable="top" default_order="date desc">
+                                            <field name="date" string="Date"/>
+                                            <field name="ntu" string="Turbidity"/>
+                                            <field name="uvt" string="UVT"/>
+                                            <field name="orp" string="ORP"/>
+                                            <field name="do" string="Dissolved Oxygen"/>
+                                            <field name="ph" string="pH"/>
+                                            <field name="chl" string="Chlorine"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Alarms">
+                                <group name="alarms">
+                                    <field name="alarm_line_ids" nolabel="1">
+                                        <tree editable="top" default_order="date desc">
+                                            <field name="date" string="Date"/>
+                                            <field name="lfa" string="UV Dose Low"/>
+                                            <field name="fma" string="UV Dose MAX GPM"/>
+                                            <field name="pta" string="UV Lamp Failure"/>
+                                            <field name="lda" string="High Temp"/>
+                                            <field name="fdpa" string="UV Probe Disconnected"/>
+                                            <field name="uv_probe1_failure" string="UV Probe 1 Failure"/>
+                                            <field name="uv_probe_2_failure" string="UV Probe 2 Failure"/>
+                                            <field name="flow_meter_failure" string="Flow meter Failure"/>
+                                            <field name="transducer_failure" string="Transducer Failure"/>
+                                            <field name="max_flush_cycle" string="MAX Flush Cycles"/>
+                                            <field name="startup_mode_timeout" string="Startup Mode Timeout"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page name="service" string="Service">
+                                <group name="service">
+                                    <field name="service_line_ids" nolabel="1">
+                                        <tree editable="top" default_order="date desc">
+                                            <field name="date" string="Date"/>
+                                            <field name="lamp_eol" string="Lamp EOL"/>
+                                            <field name="lamp_expired" string="Lamp Expired"/>
+                                            <field name="max_gpm_exceeded" string="Max GPM Exceeded"/>
+                                            <field name="high_dp_screen_filter" string="High DP Screen Filter"/>
+                                            <field name="high_dp_filter1" string="High DP Filter 1"/>
+                                            <field name="high_dp_filter2" string="High DP Filter 2"/>
+                                            <field name="filter1_expired" string="Filter 1 Expired"/>
+                                            <field name="filter_2_expired" string="Filter 2 Expired"/>
+                                            <field name="no_dp" string="No DP"/>
+                                            <field name="temp_high" string="Temp high"/>
+                                            <field name="duty_probe_out" string="Duty Probe out of Range"/>
+                                            <field name="reactor_temp_high" string="Reactor Temp High"/>
+                                            <field name="service_system" string="Service System"/>
+                                            <field name="service" string="Service"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Raw Water Test">
+                                <group>
+                                    <group>
+                                        <field name="bacteria" string="Bacteria" placeholder="Observation"/>
+                                        <field name="hardness" string="Hardness" placeholder="Observation"/>
+                                        <field name="ph" string="pH" placeholder="Observation "/>
+                                        <field name="iron" string="Iron" placeholder="Observation"/>
+                                        <field name="manganese" string="Manganese" placeholder="Observation"/>
+                                        <field name="tds" string="TDS" placeholder="Observation"/>
+                                        <field name="turbidity" string="Turbidity" placeholder="Observation"/>
+                                        <field name="uv_t" string="UV/T" placeholder="Observation"/>
+                                    </group>
+                                    <group>
+                                        <field name="epa1" string="EPA (STD) &lt;0 ppm" placeholder="Test Result"/>
+                                        <field name="epa2" placeholder="Test Result" attrs="{}"
+                                               string="WQA (STD) &lt;1 gpg"/>
+                                        <field name="epa3" placeholder="Test Result" string="EPA (STD) 6.5 -8.5 ppm"/>
+                                        <field name="epa4" placeholder="Test Result" string="EPA (STD) &lt;.3 ppm"/>
+                                        <field name="epa5" placeholder="Test Result" string="EPA (STD) &lt;.05 ppm"/>
+                                        <field name="epa6" placeholder="Test Result" string="EPA (STD) &lt;500 ppm"/>
+                                        <field name="epa7" placeholder="Test Result" string="EPA (STD) &lt;5 NTU"/>
+                                        <field name="epa8" placeholder="Test Result" string="EPA (STD) &gt;93 ppm"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Equipment">
+                                <group>
+                                    <group string="Model">
+                                        <field name="item_model_1" string="Item 1"/>
+                                        <field name="item_model_2" string="Item 2"/>
+                                        <field name="model_sl_no" string="Serial Number"/>
+                                    </group>
+                                    <group string="Replacement Parts">
+                                        <field name="rp_item_1" string="Item 1"/>
+                                        <field name="rp_item_2" string="Item 2"/>
+                                        <field name="rp_item_3" string="Item 3"/>
+                                        <field name="rp_item_4" string="Item 4"/>
+                                        <field name="rp_item_5" string="Item 5"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Users">
+                                <group>
+                                    <group string="User Name">
+                                        <field name="user_1" string="User 1"/>
+                                        <field name="user_2" string="User 2"/>
+                                        <field name="user_3" string="User 3"/>
+                                    </group>
+                                    <group string="Password">
+                                        <field name="pwd_1" string="Password 1"/>
+                                        <field name="pwd_2" string="Password 2"/>
+                                        <field name="pwd_3" string="Password 3"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Operator">
+                                <group>
+                                    <group>
+                                        <field name="operator_name" string="Operator Name"/>
+                                        <field name="op_street" string="Street Address"/>
+                                        <field name="op_city" string="City"/>
+                                        <field name="op_state" string="State"/>
+                                        <field name="op_zip" string="Zipcode"/>
+                                    </group>
+                                    <group>
+                                        <field name="op_phn" string="Phone Number"
+                                               placeholder="(717)777-7777" widget="phone"/>
+                                        <field name="op_email" string="Email" widget="email"/>
+                                        <field name="op_lc_no" string="License Number"/>
+                                        <field name="op_notes" string="Operator Notes"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Notes">
+                                <group>
+                                    <group>
+                                        <field name="dep_notes" string="DEP Notes"/>
+                                    </group>
+                                    <group>
+                                        <field name="manufacturer_notes" string="Manufacturer Notes"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Files">
+                                <group>
+                                    <group>
+                                        <field name="daily_data" string="Daily Data" file_name="file_name"/>
+                                    </group>
+                                    <group/>
+                                </group>
+                            </page>
+                            <page string="New Page">
+                                <group>
+                                    <group>
+                                        <field invisible="1" name="new_page"/>
+                                    </group>
+                                    <group/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="plc_upload_action">
+            <field name="name">PLC Upload</field>
+            <field name="res_model">plc.upload</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,pivot,kanban</field>
+        </record>
+
+        <menuitem id="plc_remote_data_menu_root"
+                  name="PLC Remote Data"
+                  web_icon="plc_remote_data,static/description/icon.png"
+                  sequence="7"/>
+
+        <menuitem id="plc_upload_menu_root"
+                  name="PLC Upload"
+                  parent="plc_remote_data_menu_root"
+                  action="plc_upload_action"
+                  sequence="1"/>
+
+        <record model="ir.ui.view" id="plc_lines_tree">
+            <field name="name">PLC Remote Data lines</field>
+            <field name="model">plc.lines</field>
+            <field name="arch" type="xml">
+                <tree editable="top" string="PLC Remote Data lines">
+                    <field name="ew_id" string="EW ID"/>
+                    <field name="lamp_eol" string="Lamp EOL"/>
+                    <field name="lamp_expired" string="Lamp Expired"/>
+                    <field name="max_gpm_exceeded" string="Max GPM Exceeded"/>
+                    <field name="high_dp_screen_filter" string="High DP Screen Filter"/>
+                    <field name="high_dp_filter1" string="High DP Filter 1"/>
+                    <field name="high_dp_filter2" string="High DP Filter 2"/>
+                    <field name="filter1_expired" string="Filter 1 Expired"/>
+                    <field name="filter_2_expired" string="Filter 2 Expired"/>
+                    <field name="no_dp" string="No DP"/>
+                    <field name="temp_high" string="Temp high"/>
+                    <field name="set_date_time" string="Set Date and Time"/>
+                    <field name="duty_probe_out" string="Duty Probe out of Range"/>
+                    <field name="reactor_temp_high" string="Reactor Temp High"/>
+                    <field name="service_system" string="Service System"/>
+                    <field name="service" string="Service"/>
+                    <field name="record" string="Record"/>
+                    <field name="date" string="Date"/>
+                    <field name="date_utc" string="Date UTC Time"/>
+                    <field name="dose" string="Dose"/>
+                    <field name="p1" string="P1"/>
+                    <field name="p2" string="P2"/>
+                    <field name="lhr" string="LHR"/>
+                    <field name="ldr" string="LDR"/>
+                    <field name="temp" string="Temp"/>
+                    <field name="btemp" string="BTemp"/>
+                    <field name="gpm" string="GPM"/>
+                    <field name="gpd" string="GPD"/>
+                    <field name="psi" string="PSI"/>
+                    <field name="dp_screen" string="DPScreen"/>
+                    <field name="dp1" string="DP1"/>
+                    <field name="dp2" string="DP2"/>
+                    <field name="fdr1" string="FDR1"/>
+                    <field name="fdr2" string="FDR2"/>
+                    <field name="ntu" string="NTU"/>
+                    <field name="uvt" string="UVT"/>
+                    <field name="orp" string="ORP"/>
+                    <field name="do" string="DO"/>
+                    <field name="plc_upload_alarm" string="PLC Upload Alarm"/>
+                    <field name="plc_upload_ccp" string="PLC Upload CCP"/>
+                    <field name="filter_data_plc" string="Filter Data PLC"/>
+                    <field name="ph" string="pH"/>
+                    <field name="chl" string="CHL"/>
+                    <field name="lfa" string="LFA"/>
+                    <field name="fma" string="FMA"/>
+                    <field name="pta" string="PTA"/>
+                    <field name="lda" string="LDA"/>
+                    <field name="fdpa" string="FDPA"/>
+                    <field name="toh" string="TOH"/>
+                    <field name="tgu" string="TGU"/>
+                    <field name="uv_probe1_failure" string="UV Probe 1 Failure"/>
+                    <field name="uv_probe_2_failure" string="UV Probe 2 Failure"/>
+                    <field name="flow_meter_failure" string="Flow Meter Failure"/>
+                    <field name="transducer_failure" string="Transducer Failure"/>
+                    <field name="max_flush_cycle" string="MAX Flush Cycles"/>
+                    <field name="startup_mode_timeout" string="Startup Mode Timeout"/>
+                    <field name="gmt" widget="datetime" string="GMT"/>
+                    <field name="status" string="Status"/>
+                    <field name="name" string="Name"/>
+                    <field name="plc_upload" string="PLC Upload"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="plc_lines_action">
+            <field name="name">PLC Remote Data Lines</field>
+            <field name="res_model">plc.lines</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem id="plc_lines_menu_root"
+                  name="PLC Remote Data Lines"
+                  parent="plc_remote_data_menu_root"
+                  action="plc_lines_action"
+                  sequence="2"/>
+    </data>
+</odoo>
