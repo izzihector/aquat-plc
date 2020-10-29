@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+
+        <record id="call_back_log_tree" model="ir.ui.view">
+            <field name="name">call.back.log.tree</field>
+            <field name="model">call.back.log</field>
+            <field name="arch" type="xml">
+                <tree edit="false" create="false" string="Call Back Log">
+                    <field name="create_date"/>
+                    <field name="call_log"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="call_back_log_action" model="ir.actions.act_window">
+            <field name="name">Call Back Log</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">call.back.log</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+
+        <menuitem
+                id="cbl_root_menu"
+                name="Call Back Log"
+                parent="base.menu_custom"
+                sequence="4"/>
+
+        <menuitem
+                id="cbl_menu"
+                name="Call Back Log"
+                parent="cbl_root_menu"
+                action="call_back_log_action"
+                sequence="10"/>
+
+    </data>
+</odoo>
