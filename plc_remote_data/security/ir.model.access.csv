@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_plc_upload_user,plc_upload_user,model_plc_upload,base.group_user,1,1,1,0
+access_plc_lines_user,plc_lines_user,model_plc_lines,base.group_user,1,1,1,0
+
