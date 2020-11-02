@@ -5,7 +5,7 @@ import json
 import logging
 
 import werkzeug.wrappers
-from odoo.addons.restful.common import (
+from odoo.addons.url_controller.common import (
     extract_arguments,
     invalid_response,
     valid_response,

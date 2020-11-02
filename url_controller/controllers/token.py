@@ -5,7 +5,7 @@ import logging
 import werkzeug.wrappers
 
 from odoo import http
-from odoo.addons.restful.common import invalid_response, valid_response
+from odoo.addons.url_controller.common import invalid_response, valid_response
 from odoo.http import request
 
 expires_in = "url_controller.access_token_expires_in"
