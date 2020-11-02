@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'URL Controller',
-    'version': '11.0.1.0.0',
+    'version': '13.0.1.0.0',
     'summary': "test kwargs",
     'category': 'Website',
     'author': 'Confianz',
