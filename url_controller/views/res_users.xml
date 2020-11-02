@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_users_form_inherit" model="ir.ui.view">
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button string="Generate API Key" name="generate_api_key" type="object"/>
+                </xpath>
+
+                <xpath expr="//notebook[last()]" position="inside">
+                    <page string="API Key and Token Details">
+                        <group>
+                            <field name="api_key" readonly="1"/>
+                            <field name="token" readonly="1"/>
+                            <field name="expires" readonly="1"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
